@@ -1,0 +1,175 @@
+swagger: '2.0'
+info:
+  version: "0.0.1"
+  title: API Autorizador de recursos.
+  description: |
+    API Autorizador de recursos.
+host: api.devjuridicogruposalinas.com
+basePath: /oauth2/v1
+
+schemes:
+  - https
+
+produces:
+  - application/json
+  
+securityDefinitions:
+  Basic:
+    type: basic
+  Bearer:
+    description: >
+      Para acceder a la API se debe pasar un token válido en todas las consultas.
+      La siguiente sintaxis se debe utilizar en el encabezado 'Authorization' :
+        Bearer: 2zzLJmBAtTNIU8nF8e8XbmDvaNGs
+    type: apiKey
+    name: Authorization
+    in: header
+    
+paths:
+  /token:
+    post:
+      summary: Generación de token de acceso tipo de concesión client credentials.
+      description: |
+        La aplicación realiza una solicitud al endpoint del token agregando los siguientes parámetros que se describen a continuación
+      tags:
+        - Oauth2
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: grant_type
+          in: formData
+          description: El valor debe ser enviado como "client_credentials"
+          required: true
+          type: string
+          default: client_credentials
+          enum: 
+            - client_credentials
+
+      responses:
+        200:
+          description: Ok
+          schema:
+              $ref: '#/definitions/respuestaToken'
+        400: 
+          description: Entrada incorrecta
+          schema:
+            $ref: '#/definitions/Error'
+          examples:
+            application/json: |-
+              {
+                  "codigo": "API.AS-5200",
+                  "mensaje": "El grant_type enviado no es el correcto, favor de validar",
+                  "folio": "awsapigeermczdev01-4266-653-1",
+                  "info": "https://baz-developer.bancoazteca.com.mx/info#API.AS-5200",
+                  "detalles": [
+                      ""
+                  ]
+              }
+            
+        401: 
+          description: No autorizado
+          schema:
+            $ref: '#/definitions/Error'
+          examples:
+            application/json: |-
+              {
+                  "codigo": "API.AS-5300",
+                  "mensaje": "No estas autorizado, favor de validar",
+                  "folio": "awsapigeermczdev01-4266-653-2",
+                  "info": "https://baz-developer.bancoazteca.com.mx/info#API.AS-5300",
+                  "detalles": [
+                      ""
+                  ]
+              }
+
+        404: 
+          description: No encontrado
+          schema:
+            $ref: '#/definitions/Error'
+          examples:
+            application/json: |-
+              {
+                  "codigo": "API.AS-5400",
+                  "mensaje": "Petición no válida, favor de validar su información",
+                  "folio": "awsapigeermczdev03-4023-576-1",
+                  "info": "https://baz-developer.bancoazteca.com.mx/info#API.AS-5400",
+                  "detalles": [
+                      "El recurso solicitado no está disponible"
+                  ]
+              }
+              
+        500: 
+          description: Error inesperado
+          schema:
+            $ref: '#/definitions/Error'
+          examples:
+            application/json: |-
+              {
+                  "codigo": "API.AS-5500",
+                  "mensaje": "Error inesperado, favor de validar",
+                  "folio": "awsapigeermczdev02-4328-1056-1",
+                  "info": "https://baz-developer.bancoazteca.com.mx/info#API.AS-5500",
+                  "detalles": [
+                      ""
+                  ]
+              }
+
+      security:
+        - Basic: []
+  
+definitions:
+  respuestaToken:
+    type: object
+    properties:
+      token_type:
+        type: string
+        enum: 
+          - Bearer
+        description: Tipo de token "Bearer"
+        example: "Bearer"
+      expires_in:
+        type: integer
+        description: El tiempo de caducidad del token de acceso. Expresado en segundos.
+        example: 3600
+      access_token:
+        type: string
+        description: El token de acceso que se está verificando.
+        example: "eyJraWQiOiIrVXV1V3FCQ2NjcWgzaHkyazVETGpidnB3UjZlUnN4TVwvVFgwdkx3SW04TT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxbjgybDU0dXRwbmc2MnAwZWVrb2ozOW1jNiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiU0NPT1BFXC9kZWxldGUgU0NPT1BFXC9yZWFkIFNDT09QRVwvd3JpdGUiLCJhdXRoX3RpbWUiOjE2OTA1MDU1MjUsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1kwVnAyV2NUOCIsImV4cCI6MTY5MDUwOTEyNSwiaWF0IjoxNjkwNTA1NTI1LCJ2ZXJzaW9uIjoyLCJqdGkiOiI4OGI1OWY1Mi1lOWU3LTRhZjctYjMzYS0zY2M1NTU3NzMxYTEiLCJjbGllbnRfaWQiOiIxbjgybDU0dXRwbmc2MnAwZWVrb2ozOW1jNiJ9.cjFgSJg1D5cmnPMSueqMQWgm4oK0I3GO70NgtMh7S7Rxl_74__JCb7A51lAwX0i1rsZf9Pc-oY3JcZM3y7FJmG3hj4fiUHD5AvGBBiX8I8-V8gKPS2-GG5WYTiPL9HKl2xa0KXBZyN055fb_gwLsk4zM84VvEgfbqt08ZqNceXF_Tli7L2TzN1SOYbS3EhD4Xf6_nHShdxnbTA7aOUzGDmBvDqrs_noqgjZ1SzLoJUI2QKSHYTP-C3v0ixBwLRBsajWkn1ADaBUql9mPbQx4AO7_0otJEu4mKM1WR1yd_At9v7kWBBnisuO3hrKYokvZVSj1dvJgx56uBnYEi8SaPw"
+     
+
+  Error:
+    type: object
+    properties:
+      codigo:
+        type: string
+        description: Código del error
+        example: "AS-5200"
+      mensaje:
+        type: string
+        description: Descripción del error
+        example: "El GrantType enviado no es el correcto, favor de validar"
+      folio:
+        type: string
+        description: Número de folio de la operación
+        example: "ip-10-96-10-176.ec2.internal-3264-1947855-1"
+      info:
+        type: string
+        description: Rutas de ayuda para atender el error
+        example: "https://baz-developer.bancoazteca.com.mx/info#AS-5200"
+      
+  summary:
+    type: object
+    properties: 
+      api-name:
+        type: string
+        description: Específica el nombre del API que se depliega en el portal
+        example: Oauth2 v1
+      token-post:
+        type: object
+        properties:
+          displayName: 
+            type: string
+            description: Solicitud de token de acceso.
+            example: Solicitud de token de acceso.

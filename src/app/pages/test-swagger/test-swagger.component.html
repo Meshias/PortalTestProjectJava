@@ -1,0 +1,32 @@
+<div class="container pt-6 p-6 oculta-scroll" style="display: flex; flex-direction: column;">
+  <div class="row centrar-texto">
+    <h3 style="font-weight: bold;">Visualizar y probar EndPoints</h3>
+  </div>
+  <div class="row centrar-texto">
+    <p>Para poder visualizar el(los) contrato(s) de API(s), favor de seleccionarlo(s) y abrirlo(s) o seleccione algún ejemplo que aparecen debajo del menú (Acerca de)</p>
+  </div>
+  <!-- Botón para seleccionar archivo -->
+  <div class="row boton-align">
+    <div class="col-md-4">
+      <button mat-raised-button color="primary" (click)="fileInput.click()">Seleccionar archivo</button>
+      <input #fileInput type="file" (change)="seleccionarArchivos($event)" accept=".json, .yaml, .yml" multiple style="display: none;" />
+    </div>
+    <div class="col-md-2">
+      <button mat-raised-button color="warn" (click)="borrarArchivos()" [disabled]="archivos.length === 0">Eliminar contratos</button>
+    </div>
+  </div>
+  
+  <!-- Acordeón con Swagger UI -->
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let archivo of archivos; let i = index" [expanded]="panelOpenState">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Visor de Endpoints: {{ archivo.name }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <!-- Contenedor de Swagger UI para cada archivo -->
+      <div class="row" style="flex: 1; overflow: auto;">
+        <div [id]="'swagger-container-' + i" class="container" style="width: 100%;"></div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+  

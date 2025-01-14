@@ -1,0 +1,496 @@
+swagger: "2.0"
+info:
+  version: 0.0.1
+  title: Catalogo de unidades de negocio
+  description: |
+    Esta API corresponde al catalogo de la gestión de unidades de negocio
+host: api.devjuridicogruposalinas.com
+basePath: /grupo-salinas/juridico/firma-documentos/catalogos/gestion-unidades-negocio/v1
+schemes:
+  - https
+
+produces:
+  - application/json
+
+securityDefinitions:
+  Bearer:
+    description: >
+      Para acceder a la API se debe pasar un token válido en todas las consultas.
+      La siguiente sintaxis se debe utilizar en el encabezado 'Authorization' :
+        Bearer: 2zzLJmBAtTNIU8nF8e8XbmDvaNGs
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - Bearer: []
+
+paths:
+  /unidades-negocio:
+    post:
+      summary: Creación de unidad de negocio
+      description: Creación de unidad de negocio
+      tags:
+        - Gestión
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "Q685828920200407191603"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+           `RFC4122 Identificador unico de correlacion.  
+            En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+            123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: '123e4567-e89b-12d3-a456-426655440000'
+        - name: Parámetros de entrada
+          required: true
+          description: Datos necesarios para realizar la petición
+          in: body
+          schema:
+            $ref: "#/definitions/entradaUnidades-negocio"
+      responses:
+        201:
+          description: Creado
+          schema:
+            $ref: "#/definitions/salidaUnidades-negocio"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /unidades-negocio/busquedas:
+    post:
+      summary: Búsqueda de unidad de negocio
+      description: Búsqueda de unidad de negocio
+      tags:
+        - Gestión
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "Q685828920200407191603"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+           `RFC4122 Identificador unico de correlacion.  
+            En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+            123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: '123e4567-e89b-12d3-a456-426655440000'
+        - name: Parámetros de entrada
+          required: true
+          description: Datos necesarios para realizar la petición
+          in: body
+          schema:
+            $ref: "#/definitions/entradaConsultaUnidadesNegocio"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaUnidades-negocioGet"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+
+  /unidades-negocio/{idUnidadNegocio}:
+    put:
+      summary: Actualización de unidad de negocio
+      description: Actualización de unidad de negocio
+      tags:
+        - Gestión
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "Q685828920200407191603"
+        - in: path
+          name: idUnidadNegocio
+          required: true
+          description: |
+            Identificador de unidad de negocio
+          type: number
+          default: 1
+        - name: x-id-interaccion
+          in: header
+          description: |-
+           `RFC4122 Identificador unico de correlacion.  
+            En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+            123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: '123e4567-e89b-12d3-a456-426655440000'
+        - name: Parámetros de entrada
+          required: true
+          description: Datos necesarios para realizar la petición
+          in: body
+          schema:
+            $ref: "#/definitions/entradaUnidades-negocio-idUnidadNegocio"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaUnidades-negocio-idUnidadNegocio"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /unidades-negocio/{idUnidadNegocio}/eliminacion:
+    post:
+      summary: Eliminacion de unidad de negocio
+      description: Eliminacion de unidad de negocio
+      tags:
+        - Gestión
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "Q685828920200407191603"
+        - in: path
+          name: idUnidadNegocio
+          required: true
+          description: |
+            Identificador de unidad de negocio
+          type: number
+          default: 1
+        - name: x-id-interaccion
+          in: header
+          description: |-
+           `RFC4122 Identificador unico de correlacion.  
+            En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+            123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: '123e4567-e89b-12d3-a456-426655440000'
+        - name: Parámetros de entrada
+          required: true
+          description: Datos necesarios para realizar la petición
+          in: body
+          schema:
+            $ref: "#/definitions/entradaEliminacionUnidadesNegocio"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaEliminacionUnidadesNegocio"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+
+definitions:
+  entradaUnidades-negocio:
+    type: object
+    properties:
+      idUsuario:
+        type: string
+        example: '332442'
+        description: |
+          id de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      nombre:
+        type: string
+        example: Elektra
+        description: nombre
+      idEmpresa:
+        type: string
+        example: '1'
+        description: Identificador de la empresa
+  salidaUnidades-negocio:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 010-20230328091657801
+        description: folio
+      resultado:
+        type: object
+        properties:
+          idUnidadNegocio:
+            type: number
+            example: '23'
+            description: Identificador de unidad de negocio
+  salidaUnidades-negocioGet:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 010-20230328091657801
+        description: folio
+      resultado:
+        type: object
+        properties:
+          unidadesNegocio:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: number
+                  example: '23'
+                  description: id
+                nombre:
+                  type: string
+                  example: Elektra
+                  description: nombre
+
+  entradaConsultaUnidadesNegocio:
+    type: object
+    properties:
+      idUsuario:
+        type: string
+        example: '332442'
+        description: |
+          id de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      idEmpresa:
+        type: string
+        example: '1'
+        description: Identificador de la empresa
+
+  entradaUnidades-negocio-idUnidadNegocio:
+    type: object
+    properties:
+      idUsuario:
+        type: string
+        example: '332442'
+        description: |
+          id de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      nombre:
+        type: string
+        example: Elektra
+        description: nombre
+      idEmpresa:
+        type: string
+        example: '1'
+        description: Identificador de la empresa
+  salidaUnidades-negocio-idUnidadNegocio:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 010-20230328091657801
+        description: folio
+  
+  entradaEliminacionUnidadesNegocio:
+    type: object
+    properties:
+      idUsuario:
+        type: string
+        example: '332442'
+        description: |
+          id de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+  salidaEliminacionUnidadesNegocio:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 010-20230328091657801
+        description: folio
+        
+  error400:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: >-
+          400.Grupo-Salinas-Juridico-Firma-Documentos-Catalogos-Gestion-Unidades-Negocio.145400
+        description: codigo
+      mensaje:
+        type: string
+        example: Parámetros no válidos por favor valide su información.
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194400
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#400.Grupo-Salinas-Juridico-Firma-Documentos-Catalogos-Gestion-Unidades-Negocio.145400
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: ''
+          description: Insert here a description
+  error404:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: >-
+          404.Grupo-Salinas-Juridico-Firma-Documentos-Catalogos-Gestion-Unidades-Negocio.145404
+        description: codigo
+      mensaje:
+        type: string
+        example: No se encontró información
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194404
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#404.Grupo-Salinas-Juridico-Firma-Documentos-Catalogos-Gestion-Unidades-Negocio.145404
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: No se obtuvo información relacionada a la consulta
+          description: Insert here a description
+  error500:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: >-
+          500.Grupo-Salinas-Juridico-Firma-Documentos-Catalogos-Gestion-Unidades-Negocio.145500
+        description: codigo
+      mensaje:
+        type: string
+        example: Error en el servidor al procesar la petición.
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202005041545559500
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#500.Grupo-Salinas-Juridico-Firma-Documentos-Catalogos-Gestion-Unidades-Negocio.145500
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: Problemas internos
+          description: Insert here a description
+  
+  summary:
+    type: object
+    properties:
+      api-name:
+        type: string
+        description: Esta API corresponde al catalogo de la gestión de unidades de negocio
+      unidades-negocio-post:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Creación de unidad de negocio
+            description: Creación de unidad de negocio
+      unidades-negocio-busquedas-post:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Búsqueda de unidad de negocio
+            description: Búsqueda de unidad de negocio
+      unidades-negocio-idUnidadNegocio-put:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Actualización de unidad de negocio
+            description: Actualización de unidad de negocio
+      unidades-negocio-idUnidadNegocio-eliminacion-post:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Eliminacion de unidad de negocio
+            description: Eliminacion de unidad de negocio
+

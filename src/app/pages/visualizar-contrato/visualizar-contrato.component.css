@@ -1,0 +1,15 @@
+.swagger-container {
+    width: 100%; /* O ajusta al tamaño necesario */
+    height: 80vh; /* Define un alto razonable */
+    overflow: auto; /* Asegura que el contenido adicional sea desplazable */
+    background-color: #ffffff; /* Opcional: Define un color de fondo */
+}
+
+.oculta-scroll {
+    overflow: hidden; /* Asegura que el contenido adicional sea desplazable */
+}
+
+.centrar-texto {
+    text-align: center;
+    margin-top: 1%;
+}

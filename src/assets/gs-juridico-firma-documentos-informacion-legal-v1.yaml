@@ -1,0 +1,1103 @@
+swagger: "2.0"
+info:
+  version: 0.0.1
+  title: Informacion legal de la firma de documentos.
+  description: |
+    La presente API corresponde a la Informacion legal de la firma de documentos
+host: api.devjuridicogruposalinas.com
+basePath: /grupo-salinas/juridico/firma-documentos/informacion-legal/v1
+schemes:
+  - https
+
+produces:
+  - application/json
+
+securityDefinitions:
+  Bearer:
+    description: >
+      Para acceder a la API se debe pasar un token válido en todas las consultas.
+      La siguiente sintaxis se debe utilizar en el encabezado 'Authorization' :
+        Bearer: 2zzLJmBAtTNIU8nF8e8XbmDvaNGs
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - Bearer: []
+
+paths:
+  /terminos-condiciones/secciones:
+    get:
+      summary: Consulta de terminos y condiciones por secciones
+      description: Consulta de terminos y condiciones por secciones
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaSeccionesget"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /terminos-condiciones/secciones/{idSeccion}:
+    get:
+      summary: Consulta de terminos y condiciones de una seccion
+      description: Consulta de terminos y condiciones de una seccion
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - in: path
+          name: idSeccion
+          required: true
+          type: integer
+          default: 1
+          description: Identificador de la seccion
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaSeccionget"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /aviso-privacidad/secciones:
+    get:
+      summary: Consulta de aviso de privacidad por secciones
+      description: Consulta de aviso de privacidad por secciones
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaSeccionesAvisoPrivacidadget"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /aviso-privacidad/secciones/{idSeccion}:
+    get:
+      summary: Consulta de aviso de privacidad de una seccion
+      description: Consulta de aviso de privacidad de una seccion
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - in: path
+          name: idSeccion
+          required: true
+          type: integer
+          default: 1
+          description: Identificador de la seccion
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaSeccionAvisoPrivacidadget"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /terminos-condiciones/busquedas:
+    post:
+      summary: Consulta historico de términos y condiciones
+      description: Consulta de terminos y condiciones para el historico
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "4e1a7bc053f845e0"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - in: body
+          name: body
+          description: Datos del usuario.
+          required: true
+          schema:
+            $ref: "#/definitions/entradaTerminos"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaBusquedaTerminos"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /terminos-condiciones/detalles/busquedas:
+    post:
+      summary: Consulta detalle de términos y condiciones
+      description: Consulta el detalle de terminos y condiciones
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "4e1a7bc053f845e0"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - in: body
+          name: body
+          description: Datos del usuario.
+          required: true
+          schema:
+            $ref: "#/definitions/entradaTerminosDetalles"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaBusquedaTerminosDetalles"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /terminos-condiciones:
+    post:
+      summary: Agregar version de terminos y condiciones
+      description: Agregar version de terminos y condiciones
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "4e1a7bc053f845e0"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - in: body
+          name: body
+          description: Datos del usuario.
+          required: true
+          schema:
+            $ref: "#/definitions/entradaTerminoCondiciones"
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: "#/definitions/salidaTerminoCondiciones"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /aviso-privacidad/busquedas:
+    post:
+      summary: Consulta historico de Aviso de privacidad
+      description: Consulta de Avisos de privacidad para el historico
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "4e1a7bc053f845e0"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - in: body
+          name: body
+          description: Datos del usuario.
+          required: true
+          schema:
+            $ref: "#/definitions/entradaAvisos"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaBusquedaAvisos"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /aviso-privacidad/detalles/busquedas:
+    post:
+      summary: Consulta detalle de Aviso de privacidad
+      description: Consulta el detalle de Aviso de privacidad
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "4e1a7bc053f845e0"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - in: body
+          name: body
+          description: Datos del usuario.
+          required: true
+          schema:
+            $ref: "#/definitions/entradaAvisoDetalles"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaBusquedaAvisoDetalles"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /aviso-privacidad:
+    post:
+      summary: Agregar version de Aviso de privacidad      
+      description: Agregar version de terminos y condiciones
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "4e1a7bc053f845e0"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - in: body
+          name: body
+          description: Datos del usuario.
+          required: true
+          schema:
+            $ref: "#/definitions/entradaAvisoPrivacidad"
+      responses:
+        201:
+          description: Created
+          schema:
+            $ref: "#/definitions/salidaAvisoPrivacidad"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+
+definitions:
+  salidaSeccionesget:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          titulo:
+            type: string
+            description: Titulo de la seccion
+            example: Términos y Condiciones
+          contenido:
+            type: string
+            description: texto del contenido de la seccion
+            example: Esta página web es propiedad y está operado por...
+          fechaActualizacion:
+            type: string
+            description: Fecha del contenido de la sección, con el formato dd/mm/aaaa
+            example: 14/02/2024
+          version:
+            type: string
+            description: Version actual de los terminos y condiciones 
+            example: '1'
+          secciones:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: number
+                  description: id
+                nombre:
+                  type: string
+                  description: nombre
+            example:
+              - id: 1
+                nombre: ¿Cuáles son los requisitos para que puedas usar los servicios de ePactum?
+              - id: 2
+                nombre: Garantías y responsabilidad por servicios y productos
+              - id: 2
+                nombre: Garantías y responsabilidad por servicios y productos
+
+  salidaSeccionget:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          contenido:
+            type: string
+            description: texto del contenido de la seccion
+            example: Para usar nuestra página web y / o recibir nuestros servicios, debes tener al menos...
+
+  salidaSeccionesAvisoPrivacidadget:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          titulo:
+            type: string
+            description: Titulo de la seccion
+            example: Aviso de privacidad
+          contenido:
+            type: string
+            description: texto del contenido de la seccion
+            example: Esta página web es propiedad y está operado por...
+          fechaActualizacion:
+            type: string
+            description: Fecha del contenido de la sección, con el formato dd/mm/aaaa
+            example: 14/02/2024
+          version:
+            type: string
+            description: Version actual del aviso de privacidad.
+            example: '1'
+          secciones:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: number
+                  description: id
+                nombre:
+                  type: string
+                  description: nombre
+            example:
+              - id: 1
+                nombre: ¿Cuáles son los requisitos para que puedas usar los servicios de ePactum?
+              - id: 2
+                nombre: Garantías y responsabilidad por servicios y productos
+              - id: 2
+                nombre: Garantías y responsabilidad por servicios y productos
+
+  salidaSeccionAvisoPrivacidadget:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          contenido:
+            type: string
+            description: texto del contenido de la seccion
+            example: Para usar nuestra página web y / o recibir nuestros servicios, debes tener al menos...
+
+  entradaTerminos:
+    type: object
+    required:
+     - idUsuario
+    properties:
+      idUsuario:
+        type: string
+        example: 123
+        description: |
+          id de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      idEmpresa:
+        type: string
+        description: id de la empresa
+        example: "1"
+
+  salidaBusquedaTerminos:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          terminosCondiciones:
+            type: array
+            items:
+              type: object
+              properties:
+                fechaHoraActualizacion:
+                  type: string
+                  description: Fecha de última actualización de términos y condiciones 
+                  example: 14/02/2024 13:40:30
+                version:
+                  type: string
+                  description: Versión de términos y condiciones
+                  example: 1
+                autor:
+                  type: string
+                  description: Nombre de la persona que modifico términos y condiciones
+                  example: Fidel Reyes
+
+  entradaTerminosDetalles:
+    type: object
+    required:
+     - idUsuario
+    properties:
+      idUsuario:
+        type: string
+        example: 123
+        description: |
+          id de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      idEmpresa:
+        type: string
+        description: id de la empresa
+        example: "1"
+      version:
+        type: number
+        description: Versión de el documento Terminos y Condiciones
+        example: 1
+  
+  salidaBusquedaTerminosDetalles:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          fechaActualizacion:
+            type: string
+            description: Fecha de última actualización de términos y condiciones 
+            example: 14/02/2024 13:40:30
+          terminosCondiciones:
+            type: array
+            items:
+              type: object
+              properties:
+                orden:
+                  type: number
+                  description: Orden de aparición de la sección 
+                  example: 1
+                nombreSeccion:
+                  type: string
+                  description: Nombre de la sección
+                  example: USO DE COOKIES
+                contenidoSeccion:
+                  type: string
+                  description: Descripción de la sección
+                  example: El uso de cookies...
+
+  entradaTerminoCondiciones:
+    type: object
+    required:
+     - idUsuario
+     - idEmpresa
+     - terminosCondiciones
+    properties:
+      idUsuario:
+        type: string
+        example: 123
+        description: |
+          id de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      idEmpresa:
+        type: string
+        description: id de la empresa
+        example: "1"
+      terminosCondiciones:
+        type: array
+        items:
+          type: object
+          properties:
+            orden:
+              type: number
+              description: Orden de aparición de la sección 
+              example: 1
+            nombreSeccion:
+              type: string
+              description: Nombre de la sección
+              example: USO DE COOKIES
+            contenidoSeccion:
+              type: string
+              description: Descripción de la sección
+              example: El uso de cookies...
+  
+  salidaTerminoCondiciones:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+
+  entradaAvisos:
+    type: object
+    required:
+     - idUsuario
+     - idEmpresa
+    properties:
+      idUsuario:
+        type: string
+        example: 123
+        description: |
+          id de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      idEmpresa:
+        type: string
+        description: id de la empresa
+        example: "1"
+
+  salidaBusquedaAvisos:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          avisoPrivacidad:
+            type: array
+            items:
+              type: object
+              properties:
+                fechaHoraActualizacion:
+                  type: string
+                  description: Fecha de última actualización de Aviso de privacidad 
+                  example: 14/02/2024 13:40:30
+                version:
+                  type: string
+                  description: Versión de Aviso de privacidad
+                  example: 1
+                autor:
+                  type: string
+                  description: Nombre de la persona que modifico Aviso de privacidad
+                  example: Fidel Reyes
+
+  entradaAvisoDetalles:
+    type: object
+    required:
+     - idUsuario
+    properties:
+      idUsuario:
+        type: string
+        example: 123
+        description: |
+          id de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      idEmpresa:
+        type: string
+        description: id de la empresa
+        example: "1"
+      version:
+        type: number
+        description: Versión de el documento Aviso Privacidad
+        example: 1
+  
+  salidaBusquedaAvisoDetalles:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          fechaActualizacion:
+            type: string
+            description: Fecha de última actualización de Aviso Privacidad 
+            example: 14/02/2024 13:40:30
+          avisoPrivacidad:
+            type: array
+            items:
+              type: object
+              properties:
+                orden:
+                  type: number
+                  description: Orden de aparición de la sección 
+                  example: 1
+                nombreSeccion:
+                  type: string
+                  description: Nombre de la sección
+                  example: USO DE COOKIES
+                contenidoSeccion:
+                  type: string
+                  description: Descripción de la sección
+                  example: El uso de cookies...
+
+  entradaAvisoPrivacidad:
+    type: object
+    required:
+     - idUsuario
+     - idEmpresa
+     - avisoPrivacidad
+    properties:
+      idUsuario:
+        type: string
+        example: 123
+        description: |
+          id de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      idEmpresa:
+        type: string
+        description: id de la empresa
+        example: "1"
+      avisoPrivacidad:
+        type: array
+        items:
+          type: object
+          properties:
+            orden:
+              type: number
+              description: Orden de aparición de la sección 
+              example: 1
+            nombreSeccion:
+              type: string
+              description: Nombre de la sección
+              example: USO DE COOKIES
+            contenidoSeccion:
+              type: string
+              description: Descripción de la sección
+              example: El uso de cookies...
+
+  salidaAvisoPrivacidad:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+
+  error400:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: 400.Grupo-Salinas-Juridico-Firma-Documentos-Informacion-Legal.145400
+        description: codigo
+      mensaje:
+        type: string
+        example: Parámetros no válidos por favor valide su información.
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194400
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#400.Grupo-Salinas-Juridico-Firma-Documentos-Informacion-Legal.145400
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: ""
+          description: Insert here a description
+  error404:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: 404.Grupo-Salinas-Juridico-Firma-Documentos-Informacion-Legal.145404
+        description: codigo
+      mensaje:
+        type: string
+        example: No se encontró información
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194404
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#404.Grupo-Salinas-Juridico-Firma-Documentos-Informacion-Legal.145404
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: No se obtuvo información relacionada a la consulta
+          description: Insert here a description
+  error500:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: 500.Grupo-Salinas-Juridico-Firma-Documentos-Informacion-Legal.145500
+        description: codigo
+      mensaje:
+        type: string
+        example: Error en el servidor al procesar la petición.
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202005041545559500
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#500.Grupo-Salinas-Juridico-Firma-Documentos-Informacion-Legal.145500
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: Problemas internos
+          description: Insert here a description
+
+  summary:
+    type: object
+    properties:
+      api-name:
+        type: string
+        description: Esta API corresponde a la Informacion legal de la firma de documentos
+      terminos-condiciones-secciones-get:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta de terminos y condiciones por secciones
+            description: Consulta de terminos y condiciones por secciones
+      terminos-condiciones-secciones-idSeccion-get:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta de terminos y condiciones de una seccion
+            description: Consulta de terminos y condiciones de una seccion
+      aviso-privacidad-secciones-get:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta de aviso de privacidad por secciones
+            description: Consulta de aviso de privacidad por secciones
+      aviso-privacidad-secciones-idSeccion-get:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta de aviso de privacidad de una seccion
+            description: Consulta de aviso de privacidad de una seccion
+      terminos-condiciones-busquedas:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta el historico de terminos y condiciones
+            description: Consulta el historico de terminos y condiciones
+      terminos-condiciones-detalles-busquedas:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta el detalle de terminos y condiciones
+            description: Consulta el detalle de terminos y condiciones
+      terminos-condiciones:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Agrega una nueva versión de terminos y condiciones
+            description: Agrega una nueva versión de terminos y condiciones
+      aviso-privacidad-busquedas:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta el historico de avisos y privacidad
+            description: Consulta el historico de avisos y privacidad
+      aviso-privacidad-detalles-busquedas:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta el detalle de avisos y privacidad
+            description: Consulta el detalle de avisos y privacidad
+      aviso-privacidad:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Agrega una nueva versión de avisos y privacidad
+            description: Agrega una nueva versión de avisos y privacidad

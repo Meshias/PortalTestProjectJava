@@ -1,0 +1,256 @@
+swagger: "2.0"
+info:
+  version: 0.0.1
+  title: Perfiles
+  description: |
+    La presente API corresponde a los perfiles de los usuarios.
+host: api.devjuridicogruposalinas.com
+basePath: /grupo-salinas/juridico/firma-documentos/usuarios/perfiles/v1
+schemes:
+  - https
+
+produces:
+  - application/json
+
+securityDefinitions:
+  Bearer:
+    description: >
+      Para acceder a la API se debe pasar un token válido en todas las consultas.
+      La siguiente sintaxis se debe utilizar en el encabezado 'Authorization' :
+        Bearer: 2zzLJmBAtTNIU8nF8e8XbmDvaNGs
+    type: apiKey
+    name: Authorization
+    in: header
+
+security:
+  - Bearer: []
+
+paths:
+  /usuarios/perfiles:
+    put:
+      summary: Cambio de perfil
+      description: Cambio de perfil
+      tags:
+        - Perfiles
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "Q685828920200407191603"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - name: Parámetros de entrada
+          required: true
+          description: Datos necesarios para realizar la petición
+          in: body
+          schema:
+            $ref: "#/definitions/entradaPerfiles"
+
+      responses:
+        201:
+          description: ok.
+          schema:
+            $ref: "#/definitions/salidaPerfiles"
+        400:
+          description: Bad request.
+          schema:
+            $ref: "#/definitions/error400"
+        401:
+          description: Not authorized.
+          schema:
+            $ref: "#/definitions/error401"
+        404:
+          description: Not found.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Server error.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+
+definitions:
+  entradaPerfiles:
+    type: object
+    required:
+      - idEmpresa
+      - idUsuario
+      - id
+      - idPerfil
+    properties:
+      idUsuario:
+        type: string
+        example: "1"
+        description: |
+          id de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      idEmpresa:
+        type: string
+        example: 1
+        description: Identificador de la empresa
+      usuario:
+        type: object
+        properties:
+          id:
+            type: string
+            example: 123
+            description: |
+              Identificador del usuario a cambiar perfil.
+              `Cifre el valor de éste campo con la llave pública (accesoPublico)
+              obtenida del api de seguridad con el cifrado
+              RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+          idPerfil:
+            type: number
+            example: 123
+            description: Identificador del perfil
+
+  salidaPerfiles:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 010-20230328091657801
+        description: folio
+
+  error400:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: 400.Grupo-Salinas-Juridico-Firma-Documentos-Gestion-Firmas.145400
+        description: codigo
+      mensaje:
+        type: string
+        example: Parámetros no válidos por favor valide su información.
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194400
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#400.Grupo-Salinas-Juridico-Firma-Documentos-Usuarios-Perfiles.145400
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: ""
+          description: Insert here a description
+
+  error401:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: 401.Grupo-Salinas-Juridico-Firma-Documentos-Usuarios-Perfiles.145401
+        description: codigo
+      mensaje:
+        type: string
+        example: "No estas autorizado, favor de validar"
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194401
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#401.Grupo-Salinas-Juridico-Firma-Documentos-Usuarios-Perfiles.145401
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: >-
+            El x-id-acceso está expirado o no es válido, favor de solicitar uno
+            nuevo
+          description: Insert here a description
+
+  error404:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: 404.Grupo-Salinas-Juridico-Firma-Documentos-Usuarios-Perfiles.145404
+        description: codigo
+      mensaje:
+        type: string
+        example: No se encontró información
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194404
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#404.Grupo-Salinas-Juridico-Firma-Documentos-Usuarios-Perfiles.145404
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: No se obtuvo información relacionada a la consulta
+          description: Insert here a description
+
+  error500:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: 500.Grupo-Salinas-Juridico-Firma-Documentos-Usuarios-Perfiles.145500
+        description: codigo
+      mensaje:
+        type: string
+        example: Error en el servidor al procesar la petición.
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202005041545559500
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#500.Grupo-Salinas-Juridico-Firma-Documentos-Usuarios-Perfiles.145500
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: Problemas internos
+          description: Insert here a description
+
+  summary:
+    type: object
+    properties:
+      grupo-salinas-juridico-firma-documentos-usuarios-perfiles-v1:
+        type: string
+        description: La presente API corresponde a los perfiles de los usuarios.
+      perfiles-busquedas:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Cambio de perfil
+            description: Cambio de perfil

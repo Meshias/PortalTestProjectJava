@@ -1,0 +1,51 @@
+.container-dashboard {
+    margin-top: 30px;/* Ajusta el valor según el espacio que desees entre el header y el contenido */
+    padding: 20px;/* Espaciado interno para el contenido */
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 30px;/* Espaciado inferior entre el título y el párrafo */
+}
+
+.layout-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 64px);
+}
+
+.p-dashboard {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.p-dashboard-titulo {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.p-dashboard-letra {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-style: italic;
+}
+
+/*Estilos Card Images*/
+.example-card {
+    max-width: 400px;/* Ajusta el tamaño máximo del card */
+    margin: 20px auto;/* Centra el card en la pantalla */
+    background: none; /* Elimina el fondo del card */
+    box-shadow: none; /* Elimina la sombra del card */
+    border: none; /* Asegura que no haya borde */
+}
+
+mat-card {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);/* Sombra sutil */
+}
+
+mat-card-image {
+    max-height: 200px;/* Limita la altura de la imagen */
+    object-fit: cover;/* Ajusta la imagen dentro del contenedor */
+}

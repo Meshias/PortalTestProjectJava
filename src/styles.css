@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+/* Scroll bar */
+
+/* Mobile */
+.scrollable {
+    height: 40vh;
+    /* width: 100vw; */
+    overflow: scroll;
+    scroll-behavior: smooth;
+  }
+  
+  .scrollable::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 1em;
+  }
+  
+  .scrollable::-webkit-scrollbar-thumb {
+    background: #e0fbf8;
+    border-radius: 8px;
+    /* Redondez del pulgar de desplazamiento */
+    border: 1px solid #e0fbf8;
+    /* Espacio alrededor del pulgar */
+  }
+  
+  .scrollable::-webkit-scrollbar-thumb:hover {
+    background: #01dec4;
+    ;
+  }
+  
+  /* Tablets */
+  @media (min-width: 480px) and (max-width: 576px) {
+    .scrollable {
+      height: 40vh;
+      overflow: scroll;
+      scroll-behavior: smooth;
+    }
+  }
+  
+  @media (min-width: 576px) {
+    .scrollable {
+      height: -webkit-fill-available;
+      overflow: scroll;
+      scroll-behavior: smooth;
+    }
+  }
+  
+  /*Desktop*/
+  @media (min-width: 768px) {
+    .scrollable {
+      height: -webkit-fill-available;
+      overflow: scroll;
+      scroll-behavior: smooth;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .scrollable {
+      height: -webkit-fill-available;
+      overflow: scroll;
+      scroll-behavior: smooth;
+    }
+  }
+  
+  /* end Scroll bar */

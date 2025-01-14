@@ -1,0 +1,32 @@
+<body>
+    <div class="row">
+        <h1 class="aling-h1"><img class="img-logo" src="../../assets/logo.png" alt="ePactum"><b class="text-center h1"
+                style="color: white;">API</b></h1>
+
+    </div>
+    <div class="background">
+        <div class="shape">a</div>
+        <div class="shape"></div>
+    </div>
+
+    <form>
+        <h3><b><span   style="color: white;">¡Te damos la bienvenida, Dev!</span></b></h3>
+
+        <div class="row p-5">            
+            <div class="mb-3 position-relative">
+                <input class="letras ps-5" type="text" placeholder="Usuario" id="username">
+                <span class="position-absolute top-50 start-0 translate-middle-y ms-2">
+                    <i class="bi bi-person icon-color"></i>
+                </span>
+            </div>
+            <div class="mb-3 position-relative">
+                <input class="letras ps-5" type="password" placeholder="Contraseña" id="password">
+                <span class="position-absolute top-50 start-0 translate-middle-y ms-2">
+                    <i class="bi bi-lock icon-color"></i>
+                </span>
+            </div>
+            <button [routerLink]="['/']"><b>Entrar</b></button>
+        </div>
+
+    </form>
+</body>

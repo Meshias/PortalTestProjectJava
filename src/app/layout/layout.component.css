@@ -1,0 +1,182 @@
+html, body {
+  background-color: white;
+}
+
+.layout-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 64px);
+}
+
+.sidenav-container {
+  flex: 1;
+  /* display: flex; */
+  height: 100%;
+  flex-direction: column;
+  overflow: auto;
+}
+
+/* Ajuste de Footer*/
+
+app-footer {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.color-header {
+  background-color: #022c4e;
+  color: white;
+}
+
+/* Lista Expandible */
+.list {
+  padding: 0;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+}
+
+.sub-entry {
+  padding-left: 24px;
+  /* Indentar submenús */
+  font-size: 0.9em;
+  /* Tamaño de texto más pequeño para submenús */
+}
+
+.empty-state {
+  text-align: center;
+  color: gray;
+  margin-top: 10px;
+}
+
+/* Final de ajuste de fooder */
+
+
+/* Ajuste de Header */
+
+.nav-header {
+  background-color: #17224d;
+  color: white;
+  height: 4rem;
+  width: auto;
+
+  /* Focus de menu */
+  .focus-image {
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .focus-image:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+
+  .row-header {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: 5px 0 5px 0.5em;
+  }
+
+}
+
+/* Ajuste de btn login */
+.alignbtn {
+  display: flex;
+  cursor: pointer;
+  height: 1em;
+  width: 1em;
+  font-size: 1.5em;
+  justify-content: center;
+
+}
+
+/* Ajuste de btn */
+.nav-header .btn-menu {
+  display: flex;
+  align-items: center;
+}
+
+/* Tamaño de menu hamburguesa */
+.mat-mdc-icon-button svg, .mat-mdc-icon-button img {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Ajuste de Header */
+.nav-header .row-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+/* Ajuste de logo */
+.img-logo {
+  height: 2em;
+  width: auto;
+}
+
+/*Final de Ajuste de Header */
+
+
+.container-list .row {
+  display: flex;
+  height: 87vh;
+  background-color: transparent;
+}
+
+.container-list .row .col-list {
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 1em;
+}
+
+.mdc-list-item__primary-text {
+  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.selectet-element {
+  background-color: #e0fbf8;
+}
+
+.mat-list-item-select:hover {
+  background-color: #e0fbf8;
+}
+
+.colorLeter {
+  color: #222946;
+  padding: 2px 0 0px 5px;
+}
+
+.hr-divider {
+  display: flex;
+
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 3px !important;
+  border-left-width: 0px;
+  border-bottom-color: #01dec4 !important;
+  width: 10rem;
+  margin: -1rem 0 0px 0 !important;
+  /* margin: 0; */
+  color: #01dec4;
+  border: 1px solid;
+  border-top: transparent;
+  opacity: inherit;
+}
+
+/* Botón de menú lateral */
+.ocultar-contorno {
+  background: none;       /* Elimina el color de fondo */
+  border: none;           /* Elimina el borde */
+  box-shadow: none;       /* Elimina cualquier sombra */
+  padding: 0;             /* Ajusta el relleno */
+  color: inherit;         /* Usa el color del texto padre */
+  cursor: pointer; 
+}

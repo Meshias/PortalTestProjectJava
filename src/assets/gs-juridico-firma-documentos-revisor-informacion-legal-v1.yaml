@@ -1,0 +1,446 @@
+swagger: "2.0"
+info:
+  version: 0.0.1
+  title: Informacion legal del revisor del documento. 
+  description: |
+    La presente API corresponde a la Informacion legal del revisor del documento
+host: api.devjuridicogruposalinas.com
+basePath: /grupo-salinas/juridico/firma-documentos/revisor/informacion-legal/v1
+schemes:
+  - https
+
+produces:
+  - application/json
+
+securityDefinitions:
+  Bearer:
+    description: >
+      Para acceder a la API se debe pasar un token válido en todas las consultas.
+      La siguiente sintaxis se debe utilizar en el encabezado 'Authorization' :
+        Bearer: 2zzLJmBAtTNIU8nF8e8XbmDvaNGs
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - Bearer: []
+
+paths:
+  /terminos-condiciones/secciones:
+    get:
+      summary: Consulta de terminos y condiciones por secciones para el revisor
+      description: Consulta de terminos y condiciones por secciones para el revisor
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaSeccionesget"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /terminos-condiciones/secciones/{idSeccion}:
+    get:
+      summary: Consulta de terminos y condiciones de una seccion para el revisor
+      description: Consulta de terminos y condiciones de una seccion para el revisor
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - in: path
+          name: idSeccion
+          required: true
+          type: integer
+          default: 1
+          description: Identificador de la seccion
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaSeccionget"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /aviso-privacidad/secciones:
+    get:
+      summary: Consulta de aviso de privacidad por secciones para el revisor
+      description: Consulta de aviso de privacidad por secciones para el revisor
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaSeccionesAvisoPrivacidadget"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /aviso-privacidad/secciones/{idSeccion}:
+    get:
+      summary: Consulta de aviso de privacidad de una seccion para el revisor
+      description: Consulta de aviso de privacidad de una seccion para el revisor
+      tags:
+        - Secciones
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - in: path
+          name: idSeccion
+          required: true
+          type: integer
+          default: 1
+          description: Identificador de la seccion
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaSeccionAvisoPrivacidadget"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+
+definitions:
+  salidaSeccionesget:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          titulo:
+            type: string
+            description: Titulo de la seccion
+            example: Términos y Condiciones
+          contenido:
+            type: string
+            description: texto del contenido de la seccion
+            example: Esta página web es propiedad y está operado por...
+          fechaActualizacion:
+            type: string
+            description: Fecha del contenido de la sección, con el formato dd/mm/aaaa
+            example: 14/02/2024
+          version:
+            type: string
+            description: Version actual de los terminos y condiciones
+            example: '1'
+          secciones:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: number
+                  description: id
+                nombre:
+                  type: string
+                  description: nombre
+            example:
+              - id: 1
+                nombre: ¿Cuáles son los requisitos para que puedas usar los servicios de ePactum?
+              - id: 2
+                nombre: Garantías y responsabilidad por servicios y productos
+              - id: 2
+                nombre: Garantías y responsabilidad por servicios y productos  
+
+  salidaSeccionget:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          contenido:
+            type: string
+            description: texto del contenido de la seccion
+            example: Para usar nuestra página web y / o recibir nuestros servicios, debes tener al menos...
+
+  salidaSeccionesAvisoPrivacidadget:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          titulo:
+            type: string
+            description: Titulo de la seccion
+            example: Aviso de privacidad
+          contenido:
+            type: string
+            description: texto del contenido de la seccion
+            example: Esta página web es propiedad y está operado por...
+          fechaActualizacion:
+            type: string
+            description: Fecha del contenido de la sección, con el formato dd/mm/aaaa
+            example: 14/02/2024
+          version:
+            type: string
+            description: Version actual del aviso de privacidad.
+            example: '1'
+          secciones:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: number
+                  description: id
+                nombre:
+                  type: string
+                  description: nombre
+            example:
+              - id: 1
+                nombre: ¿Cuáles son los requisitos para que puedas usar los servicios de ePactum?
+              - id: 2
+                nombre: Garantías y responsabilidad por servicios y productos
+              - id: 2
+                nombre: Garantías y responsabilidad por servicios y productos  
+
+  salidaSeccionAvisoPrivacidadget:
+    type: object
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 169-202007211650247600
+        description: folio
+      resultado:
+        type: object
+        properties:
+          contenido:
+            type: string
+            description: texto del contenido de la seccion
+            example: Para usar nuestra página web y / o recibir nuestros servicios, debes tener al menos...
+
+  error400:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: 400.Grupo-Salinas-Juridico-Firma-Documentos-Revisor-Informacion-Legal.145400
+        description: codigo
+      mensaje:
+        type: string
+        example: Parámetros no válidos por favor valide su información.
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194400
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#400.Grupo-Salinas-Juridico-Firma-Documentos-Revisor-Informacion-Legal.145400
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: ''
+          description: Insert here a description
+  error404:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: 404.Grupo-Salinas-Juridico-Firma-Documentos-Revisor-Informacion-Legal.145404
+        description: codigo
+      mensaje:
+        type: string
+        example: No se encontró información
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194404
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#404.Grupo-Salinas-Juridico-Firma-Documentos-Revisor-Informacion-Legal.145404
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: No se obtuvo información relacionada a la consulta
+          description: Insert here a description
+  error500:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: 500.Grupo-Salinas-Juridico-Firma-Documentos-Revisor-Informacion-Legal.145500
+        description: codigo
+      mensaje:
+        type: string
+        example: Error en el servidor al procesar la petición.
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202005041545559500
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#500.Grupo-Salinas-Juridico-Firma-Documentos-Revisor-Informacion-Legal.145500
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: Problemas internos
+          description: Insert here a description
+
+  summary:
+    type: object
+    properties:
+      api-name:
+        type: string
+        description: Esta API corresponde a la Informacion legal del revisor del documento
+      terminos-condiciones-secciones-get:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta de terminos y condiciones por secciones para el revisor
+            description: Consulta de terminos y condiciones por secciones para el revisor
+      terminos-condiciones-secciones-idSeccion-get:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta de terminos y condiciones de una seccion para el revisor
+            description: Consulta de terminos y condiciones de una seccion para el revisor
+      aviso-privacidad-secciones-get:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta de aviso de privacidad por secciones para el revisor
+            description: Consulta de aviso de privacidad por secciones para el revisor
+      aviso-privacidad-secciones-idSeccion-get:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Consulta de aviso de privacidad de una seccion para el revisor
+            description: Consulta de aviso de privacidad de una seccion para el revisor

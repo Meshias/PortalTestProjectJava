@@ -1,0 +1,11 @@
+<svg id="Componente_59_1" data-name="Componente 59 – 1" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <g id="Unión_3" data-name="Unión 3" transform="translate(-13121 -490)" fill="none">
+    <path d="M 13163 537.5 L 13127 537.5 C 13123.9677734375 537.5 13121.5 535.03271484375 13121.5 532 L 13121.5 496 C 13121.5 492.96728515625 13123.9677734375 490.5 13127 490.5 L 13163 490.5 C 13166.0322265625 490.5 13168.5 492.96728515625 13168.5 496 L 13168.5 532 C 13168.5 535.03271484375 13166.0322265625 537.5 13163 537.5 Z" stroke="none"/>
+    <path d="M 13127 491 C 13124.2431640625 491 13122 493.2429809570312 13122 496 L 13122 532 C 13122 534.7570190429688 13124.2431640625 537 13127 537 L 13163 537 C 13165.7568359375 537 13168 534.7570190429688 13168 532 L 13168 496 C 13168 493.2429809570312 13165.7568359375 491 13163 491 L 13127 491 M 13127 490 L 13163 490 C 13166.3134765625 490 13169 492.686279296875 13169 496 L 13169 532 C 13169 535.313720703125 13166.3134765625 538 13163 538 L 13127 538 C 13123.6865234375 538 13121 535.313720703125 13121 532 L 13121 496 C 13121 492.686279296875 13123.6865234375 490 13127 490 Z" stroke="none" fill="#28dec4"/>
+  </g>
+  <g id="Grupo_105" data-name="Grupo 105" transform="translate(-20.5 -6)">
+    <line id="Línea_378" data-name="Línea 378" x2="26" transform="translate(31.5 20)" fill="none" stroke="#28dec4" stroke-linecap="round" stroke-width="3"/>
+    <line id="Línea_379" data-name="Línea 379" x2="26" transform="translate(31.5 31)" fill="none" stroke="#28dec4" stroke-linecap="round" stroke-width="3"/>
+    <line id="Línea_380" data-name="Línea 380" x2="26" transform="translate(31.5 41)" fill="none" stroke="#28dec4" stroke-linecap="round" stroke-width="3"/>
+  </g>
+</svg>

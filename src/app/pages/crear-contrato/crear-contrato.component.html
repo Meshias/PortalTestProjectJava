@@ -1,0 +1,182 @@
+<div>
+    <h1 class="titulo">Edición de Contrato y pruebas</h1>
+    <div class="container">
+        <div class="row" style="padding-bottom: 1%;">
+            <h4>Seleccione el contrato a editar</h4>
+            <mat-form-field appearance="fill">
+                <mat-label>Seleccione un archivo</mat-label>
+                <mat-select required (selectionChange)="seleccionarArchivos($event)">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let archivo of archivos" [value]="archivo">
+                        {{ archivo.nombre }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>            
+        </div>
+    </div>
+
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Formulario para creacion / edición de contratos</mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- Formulario -->
+            <div class="container">
+                <!-- Crear 2 formularios diferentes -->
+                <form [formGroup]="formGroupTitulo">
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Titulo y descripción de la API</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="row align-items-center">
+                            <div class="col-20">
+                                <mat-label>Datos Principales del Contrato</mat-label>
+                                <mat-divider style="margin: 8px 0;"></mat-divider>
+                            </div>
+                            <!-- Titulo campo -->
+                            <div class="col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Titulo</mat-label>
+                                    <input matInput formControlName="titulo" required />
+                                    <mat-error *ngIf="formGroupTitulo.get('titulo')?.invalid">Campo requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <!-- Descripción campo -->
+                            <div class="col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Descripción</mat-label>
+                                    <input matInput formControlName="descripcionTitulo" required />
+                                    <mat-error *ngIf="formGroupTitulo.get('descripcionTitulo')?.invalid">Campo requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <!-- URL campo -->
+                            <div class="col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>URL (Link)</mat-label>
+                                    <input matInput formControlName="urlTitulo" required />
+                                    <mat-error *ngIf="formGroupTitulo.get('urlTitulo')?.invalid">Campo requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <!-- Descripción URL campo -->
+                            <div class="col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Descripción URL</mat-label>
+                                    <input matInput formControlName="descripcionUrlTitulo" required />
+                                    <mat-error *ngIf="formGroupTitulo.get('descripcionUrlTitulo')?.invalid">Campo requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="button-container">
+                                <button mat-raised-button color="primary" type="submit" [disabled]="formGroupTitulo.invalid">Enviar</button>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </form>
+                <form [formGroup]="formGroup">
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Datos de EndPoint</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="row align-items-center">
+                            <div class="col-20">
+                                <mat-label>Path</mat-label>
+                                <mat-divider style="margin: 8px 0;"></mat-divider>
+                            </div>
+                            <!-- Primer campo -->
+                            <div class="col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                  <mat-label>Seleccionar Endpoint</mat-label>
+                                  <mat-select (selectionChange)="seleccionarEndpoint($event)" [disabled]="!listaEndpoints.length">
+                                    <mat-option *ngFor="let endpoint of listaEndpoints" [value]="endpoint">
+                                      {{ endpoint.method.toUpperCase() }} {{ endpoint.path }}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <!-- Segundo campo -->
+                            <div class="col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>EndPoint</mat-label>
+                                    <input matInput formControlName="endPoint" required />
+                                    <mat-error *ngIf="formGroup.get('endPoint')?.invalid">Campo requerido</mat-error>
+                                </mat-form-field>
+                                <!-- <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Petición</mat-label>
+                                    <input matInput formControlName="peticion" required />
+                                    <mat-error *ngIf="formGroup.get('peticion')?.invalid">Campo requerido</mat-error>
+                                </mat-form-field> -->
+                            </div>
+                            <!-- Tercer campo -->
+                            <div class="col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Resumen</mat-label>
+                                    <input matInput formControlName="resumen" required />
+                                    <mat-error *ngIf="formGroup.get('resumen')?.invalid">Campo requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <!-- Cuarto campo -->
+                            <div class="col-md-4">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Descripción</mat-label>
+                                    <input matInput formControlName="descripcionPath" required />
+                                    <mat-error *ngIf="formGroup.get('descripcionPath')?.invalid">Campo requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-20">
+                            <mat-label>Response</mat-label>
+                            <mat-divider style="margin: 8px 0;"></mat-divider>
+                            </div>
+                            <!-- Iterar sobre el FormArray de responses -->
+                            <div formArrayName="responses">
+                                <div *ngFor="let response of responses.controls; let i = index" [formGroupName]="i" class="row align-items-center">
+                                    <div class="col-md-4">
+                                        <mat-form-field appearance="outline" class="w-100">
+                                            <mat-label>Response Code</mat-label>
+                                            <input matInput formControlName="codeResponse" required />
+                                            <mat-error *ngIf="response.get('codeResponse')?.invalid">Campo requerido</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field appearance="outline" class="w-100">
+                                            <mat-label>Descripción del Response</mat-label>
+                                            <input matInput formControlName="descripcionResponse" required />
+                                            <mat-error *ngIf="response.get('descripcionResponse')?.invalid">Campo requerido</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <mat-form-field appearance="outline" class="w-100">
+                                            <mat-label>Reponse value</mat-label>
+                                            <textarea [cols]="15" [rows]="5" matInput formControlName="response" required ></textarea>
+                                            <mat-error *ngIf="response.get('response')?.invalid">Campo requerido</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- Botón para eliminar esta respuesta -->
+                                    <div class="col-md-2 d-flex align-items-center">
+                                    <button mat-icon-button color="warn" (click)="removeResponse(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>                       
+                            <!-- Botón para agregar una nueva respuesta -->
+                            <div class="col-12">
+                                <button mat-raised-button color="primary" (click)="addResponse()">Agregar Response</button>
+                            </div>
+                        </div>                      
+                        <div class="button-container">
+                            <button mat-raised-button color="primary" type="submit"
+                                [disabled]="formGroup.invalid">Enviar</button>
+                        </div>
+                    </mat-expansion-panel>
+                </form>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    
+    <!-- Contenedor de Swagger UI -->
+    <div>
+        <h4>{{ archivos?.nombre }}</h4>
+        <div id="swagger-ui" class="swagger-container" style="margin-top: 20px;"></div>
+    </div>    
+</div>

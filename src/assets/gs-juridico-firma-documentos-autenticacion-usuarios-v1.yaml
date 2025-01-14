@@ -1,0 +1,702 @@
+swagger: "2.0"
+info:
+  version: 0.0.1
+  title: Autenticación de usuarios
+  description: |
+    Esta API corresponde a la autenticación de usuarios
+host: api.devjuridicogruposalinas.com
+basePath: /grupo-salinas/juridico/firma-documentos/autenticacion-usuarios/v1
+schemes:
+  - https
+
+produces:
+  - application/json
+
+securityDefinitions:
+  Bearer:
+    description: >
+      Para acceder a la API se debe pasar un token válido en todas las consultas.
+      La siguiente sintaxis se debe utilizar en el encabezado 'Authorization' :
+        Bearer: 2zzLJmBAtTNIU8nF8e8XbmDvaNGs
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - Bearer: []
+
+paths:
+  /autenticacion:
+    post:
+      summary: Autenticacion de usuarios
+      description: Autenticacion de usuarios
+      tags:
+        - Autenticación
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "Q685828920200407191603"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - name: Parámetros de entrada
+          required: true
+          description: Datos necesarios para realizar la petición
+          in: body
+          schema:
+            $ref: "#/definitions/entradaAutenticacion"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaAutenticacion"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        401:
+          description: No autorizado.
+          schema:
+            $ref: "#/definitions/error401"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+  /tokens/validacion:
+    post:
+      summary: Validación de tokens
+      description: Validación de tokens
+      tags:
+        - Autenticación
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "Q685828920200407191603"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - name: Parámetros de entrada
+          required: true
+          description: Datos necesarios para realizar la petición
+          in: body
+          schema:
+            $ref: "#/definitions/entradaValidarTokens"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaValidarTokens"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        401:
+          description: No autorizado.
+          schema:
+            $ref: "#/definitions/error401"
+        404:
+          description: Recurso no encontrado.
+          schema:
+            $ref: "#/definitions/error404"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+
+  /cerrar-sesion:
+    post:
+      summary: Cierre de sesion del usuario
+      description: Cierre de sesion del usuario
+      tags:
+        - Sesion
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "Q685828920200407191603"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - name: Parámetros de entrada
+          required: true
+          description: Datos necesarios para realizar la petición
+          in: body
+          schema:
+            $ref: "#/definitions/entradaCerrarSesion"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaCerrarSesion"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        401:
+          description: No autorizado.
+          schema:
+            $ref: "#/definitions/error401"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+
+  /sesiones-validaciones:
+    post:
+      summary: valida la sesion del usuario
+      description: valida la sesion del usuario
+      tags:
+        - Sesion
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "Q685828920200407191603"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - name: Parámetros de entrada
+          required: true
+          description: Datos necesarios para realizar la petición
+          in: body
+          schema:
+            $ref: "#/definitions/entradaValidarSesion"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaConsultaSesion"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        401:
+          description: No autorizado.
+          schema:
+            $ref: "#/definitions/error401"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+
+  /sesiones:
+    put:
+      summary: Renueva la sesion del usuario
+      description: Renueva la sesion del usuario
+      tags:
+        - Sesion
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: x-id-acceso
+          in: header
+          description: |
+            `Identificador de acceso (idAcceso) obtenido del api de seguridad.`
+          required: true
+          type: string
+          default: "Q685828920200407191603"
+        - name: x-id-interaccion
+          in: header
+          description: |-
+            `RFC4122 Identificador unico de correlacion.  
+             En su representación textual canónica los dieciséis octetos de un UUID se representan como 32 dígitos hexadecimales (base 16) mostrados en cinco grupos separados por guiones de la forma 8-4-4-4-12, dando un total de 36 caracteres (32 caracteres alfanuméricos y cuatro guiones). Por ejemplo: 
+             123e4567-e89b-12d3-a456-426655440000`
+          required: false
+          type: string
+          default: "123e4567-e89b-12d3-a456-426655440000"
+        - name: Parámetros de entrada
+          required: true
+          description: Datos necesarios para realizar la petición
+          in: body
+          schema:
+            $ref: "#/definitions/entradaActualizaSesion"
+      responses:
+        200:
+          description: Ok
+          schema:
+            $ref: "#/definitions/salidaActualizaSesion"
+        400:
+          description: Solicitud incorrecta.
+          schema:
+            $ref: "#/definitions/error400"
+        401:
+          description: No autorizado.
+          schema:
+            $ref: "#/definitions/error401"
+        500:
+          description: Error interno de servidor.
+          schema:
+            $ref: "#/definitions/error500"
+      security:
+        - Bearer: []
+
+definitions:
+  entradaAutenticacion:
+    type: object
+    required: [idUsuario]
+    properties:
+      idUsuario:
+        type: string
+        example: "264132"
+        description: |
+          Identificador de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      contrasenia:
+        type: string
+        example: "contrasenia"
+        description: |
+          Contraseña del usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+  salidaAutenticacion:
+    type: object
+    required: [mensaje, folio, resultado]
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 001-20230328091657801
+        description: folio
+      resultado:
+        type: object
+        required: [usuario]
+        properties:
+          usuario:
+            type: object
+            required: [nombre, primerApellido, segundoApellido, contacto]
+            properties:
+              idEmpresa:
+                type: integer
+                example: 1
+                description: Identificador de la empresa
+              idUnidadNegocio:
+                type: integer
+                example: 1
+                description: Identificador de la unidad de negocio
+              nombre:
+                type: string
+                example: Ricardo
+                description: |
+                  nombre
+                  `Descifrar el valor de éste campo con la llave privada (accesoPrivado) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+              primerApellido:
+                type: string
+                example: Sandobal
+                description: |
+                  primer apellido
+                  `Descifrar el valor de éste campo con la llave privada (accesoPrivado) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+              segundoApellido:
+                type: string
+                example: Perez
+                description: |
+                  segundo apellido
+                  `Descifrar el valor de éste campo con la llave privada (accesoPrivado) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+              contacto:
+                type: object
+                required: [correo]
+                properties:
+                  correo:
+                    type: string
+                    example: ricardo.cortes@juridicogs.com
+                    description: |
+                      correo
+                      `Descifrar el valor de éste campo con la llave privada (accesoPrivado) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+              perfil:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Identificador de perfil del usuario
+                    example: "23442"
+          consentimientos:
+            type: object
+            properties:
+              aceptaAvisoPrivacidad:
+                type: boolean
+                example: true
+                description: Bandera para saber si ya acepto aviso de privacidad
+              aceptaTerminosCondiciones:
+                type: boolean
+                example: true
+                description: Bandera para saber si ya acepto TyC
+          contrasenia:
+            type: object
+            properties:
+              renovar:
+                type: boolean
+                example: false
+                description: Bandera para saber si ya actualizo contraseña
+              fechaUltimaActualizacion:
+                type: string
+                example: 15/02/2024
+                description: Fecha de la ultima vez que actualizo su contraseña  
+          rutaFoto:
+            type: string
+            example: "perfil-foto.png"
+            description: Ruta de la foto del usuario.
+              `Cifre el valor de éste campo con la llave pública (accesoPublico)
+              obtenida del api de seguridad con el cifrado
+              RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+
+          token:
+            type: string
+            description: Token generado por el usuario
+            example: "XXX.XXX.XXX"
+          refreshToken:
+            type: string
+            description: refreshToken generado por usuario
+            example: "XXX.XXX.XXX"
+          idToken:
+            type: string
+            description: Identificador del token
+            example: "XXX.XXX.XXX"
+
+  entradaCerrarSesion:
+    type: object
+    required:
+      - token
+    properties:
+      token:
+        type: string
+        description: Token generado por el usuario
+        example: "XXX.XXX.XXX"
+
+  entradaValidarSesion:
+    type: object
+    required:
+      - token
+    properties:
+      token:
+        type: string
+        description: Token generado por el usuario
+        example: "XXX.XXX.XXX"
+
+  salidaCerrarSesion:
+    type: object
+    required:
+      - mensaje
+      - folio
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 010-20230328091657801
+        description: folio
+
+  entradaActualizaSesion:
+    type: object
+    required:
+      - idUsuario
+      - refreshToken
+    properties:
+      idUsuario:
+        type: string
+        example: "264132"
+        description: |
+          Identificador de usuario
+          `Cifre el valor de éste campo con la llave pública (accesoPublico) obtenida del api de seguridad con el cifrado RSA/ECB/OAEPWithSHA-256AndMGF1Padding encoding UTF-8.`
+      refreshToken:
+        type: string
+        description: refreshToken generado por del usuario
+        example: "XXX.XXX.XXX"
+
+  salidaActualizaSesion:
+    type: object
+    required:
+      - mensaje
+      - folio
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 010-20230328091657801
+        description: folio
+      resultado:
+        type: object
+        properties:
+          token:
+            type: string
+            description: Token generado por el usuario
+            example: "XXX.XXX.XXX"
+          idToken:
+            type: string
+            description: Identificador del token
+            example: "XXX.XXX.XXX"
+
+  salidaConsultaSesion:
+    type: object
+    required:
+      - mensaje
+      - folio
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 010-20230328091657801
+        description: folio
+      resultado:
+        type: object
+        properties:
+          activa:
+            type: boolean
+            description: Bandera que indica si esta Activa la sesion
+            example: true
+          valida:
+            type: boolean
+            description: Bandera que indica si de la sesión es valida
+            example: true
+  entradaValidarTokens:
+    type: object
+    required:
+      - idToken
+    properties:
+      idToken:
+        type: string
+        description: Identificador del token
+        example: "XXX.XXX.XXX"
+
+  salidaValidarTokens:
+    type: object
+    required:
+      - mensaje
+      - folio
+    properties:
+      mensaje:
+        type: string
+        example: Operación exitosa.
+        description: mensaje
+      folio:
+        type: string
+        example: 010-20230328091657801
+        description: folio
+      resultado:
+        type: object
+        properties:
+          valido:
+            type: boolean
+            description: Bandera que indica si es valido el token
+            example: true
+
+  error400:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: >-
+          400.Grupo-Salinas-Juridico-Firma-Documentos-Autenticacion-Usuarios.145400
+        description: codigo
+      mensaje:
+        type: string
+        example: Parámetros no válidos por favor valide su información.
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194400
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#400.Grupo-Salinas-Juridico-Firma-Documentos-Autenticacion-Usuarios.145400
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: ""
+          description: Detalles
+  error401:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: >-
+          401.Grupo-Salinas-Juridico-Firma-Documentos-Autenticacion-Usuarios.145401
+        description: codigo
+      mensaje:
+        type: string
+        example: "No estas autorizado, favor de validar"
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194401
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#401.Grupo-Salinas-Juridico-Firma-Documentos-Autenticacion-Usuarios.145401
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: >-
+            El x-idAcceso está expirado o no es válido, favor de solicitar uno
+            nuevo
+          description: Detalles
+  error404:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: >-
+          404.Grupo-Salinas-Juridico-Firma-Documentos-Autenticacion-Usuarios.145404
+        description: codigo
+      mensaje:
+        type: string
+        example: No se encontró información
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202012161745194404
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#404.Grupo-Salinas-Juridico-Firma-Documentos-Autenticacion-Usuarios.145404
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: No se obtuvo información relacionada a la consulta
+          description: Detalles
+  error500:
+    type: object
+    properties:
+      codigo:
+        type: string
+        example: >-
+          500.Grupo-Salinas-Juridico-Firma-Documentos-Autenticacion-Usuarios.145500
+        description: codigo
+      mensaje:
+        type: string
+        example: Error en el servidor al procesar la petición.
+        description: mensaje
+      folio:
+        type: string
+        example: 145-202005041545559500
+        description: folio
+      info:
+        type: string
+        example: >-
+          https://baz-developer.bancoazteca.com.mx/info#500.Grupo-Salinas-Juridico-Firma-Documentos-Autenticacion-Usuarios.145500
+        description: info
+      detalles:
+        type: array
+        items:
+          type: string
+          example: Problemas internos
+          description: Detalles
+
+  summary:
+    type: object
+    properties:
+      api-name:
+        type: string
+        description: Esta API corresponde a la autenticación de usuarios
+      autenticacion-post:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Búsqueda de usuario
+            description: Búsqueda de usuario
+      cerrar-sesion-post:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Cierre de sesión del usuario
+            description: Cierre de sesión del usuario
+      sesiones-put:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: Actualiza sesión del usuario
+            description: Actualiza sesión del usuario
+      sesiones-validaciones-post:
+        type: object
+        properties:
+          displayName:
+            type: string
+            example: valida sesión del usuario
+            description: valida sesión del usuario

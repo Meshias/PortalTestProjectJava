@@ -1,0 +1,51 @@
+<mat-toolbar class="nav-header ">
+    <div class="row row-header pr-1">
+        <button mat-icon-button class="btn-menu focus-image" (click)="sidenav.toggle()">
+            <img class="focus-image icon-button-img" src="assets/ico_menu-hamburguesa.svg">
+        </button>
+        <img class="img-logo" src="assets/logo.png" alt="No hay logo">
+        <mat-icon class="alignbtn" routerLink="/login">account_circle</mat-icon>
+    </div>
+</mat-toolbar>
+
+<div class="layout-container">
+    <mat-sidenav-container class="sidenav-container " autosize>
+        <mat-sidenav #sidenav class="mat-elevation-z10 " mode="side" [opened]="true">
+            <div class="container container-list scrollable">
+                <div class="row">
+                    <div class="col-list ">
+                        <div *ngFor="let option of menu; index as i">
+                            <div *ngIf="option.modulo">
+                                <h4 class="d-flex"><button class="ocultar-contorno"><a
+                                            (click)="regresar_avanzar(option.link)"
+                                            (click)="toggleSubmenu(i, option.nombre)"><mat-icon>{{option.icono}}</mat-icon>
+                                            <b class="colorLeter">{{ option.nombre }}</b></a></button></h4>
+                                <hr class="hr-divider">
+                            </div>
+
+                            <!-- Submenu -->
+                            <mat-list *ngIf="activeMenuIndex === i">
+                                <mat-list-item class="d-flex h-auto" *ngFor="let item of submenu"
+                                    (click)="visualizarPeticion(item)">
+                                    <span class="entry sub-entry">
+                                        <mat-icon>{{ item.iconoSub }}</mat-icon>
+                                        <span>{{ item.nombreSub }}</span>
+                                        <span class="request-type">{{ item.tipoPeticion }}</span>
+                                    </span>
+                                    <!-- <span class="label" matListItemTitle>{{item.nombreSub}}</span> -->
+                                </mat-list-item>
+                            </mat-list>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-sidenav>
+        <router-outlet></router-outlet>
+    </mat-sidenav-container>
+    <app-footer></app-footer>
+</div>
+
+<!-- Mensaje cuando no hay submenú -->
+<ng-template #noSubmenu>
+    <div class="empty-state">Seleccione un menú para ver sus opciones.</div>
+</ng-template>
